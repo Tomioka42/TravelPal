@@ -16,6 +16,8 @@ namespace TravelPal
             InitializeComponent();
 
             this.userManager = userManager;
+
+            cbCountries.ItemsSource = Enum.GetNames(typeof(Countries));
         }
         private void btnRegisterUser_Click(object sender, RoutedEventArgs e)
         {
@@ -26,6 +28,10 @@ namespace TravelPal
             Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
 
             this.userManager.AddUser(username, password, selectedCountry);
+
+            MainWindow mainWindow = new(userManager);
+
+            mainWindow.Show();
 
             Close();
         }

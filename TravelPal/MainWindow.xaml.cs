@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using TravelPal.Managers;
+using TravelPal.Models;
 
 namespace TravelPal
 {
@@ -8,10 +9,19 @@ namespace TravelPal
     /// </summary>
     public partial class MainWindow : Window
     {
-        private UserManager userManager = new();
+        private UserManager userManager;
         public MainWindow()
         {
             InitializeComponent();
+
+            this.userManager = new();
+        }
+
+        public MainWindow(UserManager userManager)
+        {
+            InitializeComponent();
+
+            this.userManager = userManager;
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
@@ -19,10 +29,33 @@ namespace TravelPal
             RegisterWindow registerWindow = new(userManager);
 
             registerWindow.Show();
+
+            Close();
         }
 
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
+
+            bool isFoundUser = false;
+
+            foreach (User user in userManager.Users)
+            {
+                if (user.Username == username && user.Password == password)
+                {
+                    isFoundUser = true;
+
+                    TravelsWindow travelsWindow = new();
+
+                    travelsWindow.Show();
+                }
+                else if (!isFoundUser)
+                {
+                    MessageBox.Show("Username or password is incorrect", "Warning");
+                }
+            }
+
 
         }
     }

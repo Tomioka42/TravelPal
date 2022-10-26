@@ -45,7 +45,24 @@ namespace TravelPal.Managers
 
         private bool ValidateUsername(string username)
         {
-            return true;
+            bool isInvalidUsername = false;
+
+            foreach (User user in Users)
+            {
+                if (user.Username == username)
+                {
+                    isInvalidUsername = true;
+                }
+            }
+
+            if (!isInvalidUsername)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool SignInUser(string username, string password)
