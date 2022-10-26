@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using TravelPal.Enums;
 using TravelPal.Managers;
 
 namespace TravelPal
@@ -9,17 +11,21 @@ namespace TravelPal
     public partial class RegisterWindow : Window
     {
         private UserManager userManager;
-        public RegisterWindow()
+        public RegisterWindow(UserManager userManager)
         {
             InitializeComponent();
-        }
 
+            this.userManager = userManager;
+        }
         private void btnRegisterUser_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
+            string country = cbCountries.SelectedItem as string;
 
-            this.userManager.AddUser(username, password);
+            Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
+
+            this.userManager.AddUser(username, password, selectedCountry);
 
             Close();
         }

@@ -9,20 +9,28 @@ namespace TravelPal.Managers
         public string Username { get; set; }
         public string Password { get; set; }
         public Countries Location { get; set; }
-        public List<IUser> Users { get; set; }
+        public List<IUser> Users { get; set; } = new();
         public IUser SignedInUser { get; set; }
 
         public UserManager()
         {
 
         }
-        public bool AddUser(IUser user, string username, string password)
+        public bool AddUser(string username, string password, Countries country)
         {
-            user.Username = Username;
-            user.Password = Password;
+            // Validate username
+            if (ValidateUsername(username))
+            {
+                User user = new(username, password, country);
 
-            Users.Add(user);
-            return false;
+                Users.Add(user);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void RemoveUser(IUser user)
@@ -37,7 +45,7 @@ namespace TravelPal.Managers
 
         private bool ValidateUsername(string username)
         {
-            return false;
+            return true;
         }
 
         public bool SignInUser(string username, string password)
