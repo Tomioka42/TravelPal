@@ -4,6 +4,9 @@ namespace TravelPal.Models
 {
     public class Travel
     {
+        private int travelers;
+        private Countries selectedCountry;
+
         public Countries Country { get; set; }
         public int Travelers { get; set; }
         public string Destination { get; set; }

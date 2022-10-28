@@ -21,19 +21,31 @@ namespace TravelPal
         }
         private void btnRegisterUser_Click(object sender, RoutedEventArgs e)
         {
+
+            // Fixa att om alla inte är inlagda och skrivna så blir det ett error meddelande
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string country = cbCountries.SelectedItem as string;
 
-            Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
 
-            this.userManager.AddUser(username, password, selectedCountry);
 
-            MainWindow mainWindow = new(userManager);
+            if (cbCountries.SelectedItem == null || txtUsername.Text == null || txtPassword.Text == null)
+            {
+                MessageBox.Show("Error! You must enter all the information that is asked");
+            }
+            else
+            {
+                Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
 
-            mainWindow.Show();
+                this.userManager.AddUser(username, password, selectedCountry);
 
-            Close();
+                MainWindow mainWindow = new(userManager);
+
+                mainWindow.Show();
+
+                Close();
+            }
+
         }
     }
 }

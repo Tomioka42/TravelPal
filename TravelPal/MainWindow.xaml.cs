@@ -46,15 +46,21 @@ namespace TravelPal
                 {
                     isFoundUser = true;
 
-                    TravelsWindow travelsWindow = new();
+                    userManager.SignedInUser = user;
+
+                    TravelsWindow travelsWindow = new(userManager);
 
                     travelsWindow.Show();
+
+                    Close();
                 }
                 else if (!isFoundUser)
                 {
                     MessageBox.Show("Username or password is incorrect", "Warning");
                 }
             }
+
+
 
 
         }

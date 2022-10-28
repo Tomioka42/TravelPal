@@ -4,13 +4,12 @@ namespace TravelPal.Models
 {
     public class Trip : Travel
     {
+
         public TripTypes Type { get; set; }
-
-        public Trip(int Travelers, Countries Country, string Destination, TripTypes type) : base(Travelers, Country, Destination)
+        public Trip(int travelers, Countries country, string destination, TripTypes selectedTripType) : base(travelers, country, destination)
         {
-            this.Type = type;
+            Type = selectedTripType;
         }
-
         public override string GetInfo()
         {
             return "";

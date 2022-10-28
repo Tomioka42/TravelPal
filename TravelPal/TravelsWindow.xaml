@@ -94,7 +94,7 @@
             Background="MediumSlateBlue"
             BorderBrush="Black"
             BorderThickness="2"
-            Margin="10">
+            Margin="10" Click="btnAddTravel_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>
@@ -128,7 +128,7 @@
             Background="MediumSlateBlue"
             BorderBrush="Black"
             BorderThickness="2"
-            Margin="10">
+            Margin="10" Click="btnInfo_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>

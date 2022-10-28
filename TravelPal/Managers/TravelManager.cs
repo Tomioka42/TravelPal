@@ -4,17 +4,27 @@ using TravelPal.Models;
 
 namespace TravelPal.Managers
 {
-    public class TravelManager : Travel
+    public class TravelManager
     {
-        public List<Travel> Travels { get; set; }
-        public TravelManager(int travelers, Countries country, string destination, List<Travel> travels) : base(travelers, country, destination)
+
+        public List<Travel> AllTravels { get; set; } = new();
+
+        public Travel AddTravel(int travelers, Countries country, string destination, TripTypes tripType)
         {
-            this.Travels = travels;
+            Trip trip = new(travelers, country, destination, tripType);
+
+            AllTravels.Add(trip);
+
+            return trip;
         }
 
-        public void AddTravel(Travel travel)
+        public Travel AddTravel(int travelers, Countries country, string destination, bool allInclusive)
         {
+            Vacation vacation = new(travelers, country, destination, allInclusive);
 
+            AllTravels.Add(vacation);
+
+            return vacation;
         }
 
         public void RemoveTravel(Travel travel)

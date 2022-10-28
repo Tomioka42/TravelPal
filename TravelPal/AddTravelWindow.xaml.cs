@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using TravelPal.Enums;
+using TravelPal.Managers;
+using TravelPal.Models;
 
 namespace TravelPal
 {
@@ -19,9 +12,92 @@ namespace TravelPal
     /// </summary>
     public partial class AddTravelWindow : Window
     {
-        public AddTravelWindow()
+        private TravelManager travelManager = new();
+        private string selectedTravelType;
+        private UserManager userManager;
+
+        public AddTravelWindow(UserManager userManager)
         {
             InitializeComponent();
+
+            this.userManager = userManager;
+
+            cbCountry.ItemsSource = Enum.GetNames(typeof(Countries));
+
+            cbTravelType.ItemsSource = Enum.GetNames(typeof(TravelTypes));
+
+            cbTripType.ItemsSource = Enum.GetNames(typeof(TripTypes));
+        }
+
+        private void btnAddTravel_Click(object sender, RoutedEventArgs e)
+        {
+            string destination = txtDestination.Text;
+            string travelers = txtAmountOfTravelers.Text;
+
+
+
+            try
+            {
+                int travelersInt = int.Parse(travelers);
+
+                string country = cbCountry.SelectedItem as string;
+
+                Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
+
+                if (selectedTravelType == "Trip")
+                {
+                    string tripType = cbTripType.SelectedItem as string;
+
+                    TripTypes selectedTripType = (TripTypes)Enum.Parse(typeof(TripTypes), tripType);
+
+                    Travel newTravel = travelManager.AddTravel(travelersInt, selectedCountry, destination, selectedTripType);
+
+                    User user = userManager.SignedInUser as User;
+
+                    user.Travels.Add(newTravel);
+                }
+                else if (selectedTravelType == "Vacation")
+                {
+                    bool allInclusive = (bool)xbAllInclusive.IsChecked;
+
+                    Travel newTravel = travelManager.AddTravel(travelersInt, selectedCountry, destination, allInclusive);
+
+                    User user = userManager.SignedInUser as User;
+
+                    user.Travels.Add(newTravel);
+
+                }
+                TravelsWindow travelsWindow = new(userManager);
+
+                travelsWindow.Show();
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Warning");
+            }
+
+        }
+
+
+        private void cbTravelType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Trip eller Vacation?
+            this.selectedTravelType = cbTravelType.SelectedItem as string;
+
+            if (selectedTravelType == "Trip")
+            {
+                // Visa leisure or work combobox
+                cbTripType.Visibility = Visibility.Visible;
+                xbAllInclusive.Visibility = Visibility.Hidden;
+            }
+            else if (selectedTravelType == "Vacation")
+            {
+                // Visa all inclusive checkbox
+                cbTripType.Visibility = Visibility.Hidden;
+                xbAllInclusive.Visibility = Visibility.Visible;
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelPal"
         mc:Ignorable="d"
-        Title="TravelDetailWindow" Height="600" Width="500" FontFamily="Ariel" Background="MintCream" WindowStartupLocation="CenterScreen">
+        Title="TravelDetailWindow" Height="400" Width="500" FontFamily="Ariel" Background="MintCream" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -15,8 +15,6 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -69,27 +67,7 @@
             FontSize="20"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"/>
-        <Label
-            Grid.Column="1"
-            Grid.Row="6"
-            Content="Start Date:"
-            FontSize="20"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
-        <Label
-            Grid.Column="1"
-            Grid.Row="7"
-            Content="Ending date:"
-            FontSize="20"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
-        <Label
-            Grid.Column="1"
-            Grid.Row="8"
-            Content="Total traveling days:"
-            FontSize="20"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
+
 
         <Label
             x:Name="lbDestination"
@@ -128,39 +106,6 @@
             x:Name="lbTravelType"
             Grid.Column="2"
             Grid.Row="5"
-            Content="Content"
-            FontSize="20"
-            BorderBrush="Black"
-            BorderThickness="1.5"
-            Background="White"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
-        <Label
-            x:Name="lbStartDate"
-            Grid.Column="2"
-            Grid.Row="6"
-            Content="Content"
-            FontSize="20"
-            BorderBrush="Black"
-            BorderThickness="1.5"
-            Background="White"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
-        <Label
-            x:Name="lbEndDate"
-            Grid.Column="2"
-            Grid.Row="7"
-            Content="Content"
-            FontSize="20"
-            BorderBrush="Black"
-            BorderThickness="1.5"
-            Background="White"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
-        <Label
-            x:Name="lbTotalDaysTraveled"
-            Grid.Column="2"
-            Grid.Row="8"
             Content="Content"
             FontSize="20"
             BorderBrush="Black"

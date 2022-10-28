@@ -8,10 +8,10 @@ namespace TravelPal.Models
 
         public Vacation(int travelers, Countries country, string destination, bool allInclusive) : base(travelers, country, destination)
         {
-            this.AllInclusive = allInclusive;
+            AllInclusive = allInclusive;
         }
 
-        public string GetInfo()
+        public override string GetInfo()
         {
             return "";
         }
