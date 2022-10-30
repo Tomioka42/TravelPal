@@ -20,7 +20,7 @@ namespace TravelPal.Models
 
         public virtual string GetInfo()
         {
-            return "";
+            return $"{Country}";
         }
     }
 }

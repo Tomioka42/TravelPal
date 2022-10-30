@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
 using TravelPal.Managers;
+using TravelPal.Models;
 
 namespace TravelPal
 {
@@ -9,12 +12,37 @@ namespace TravelPal
     public partial class TravelsWindow : Window
     {
         private UserManager userManager;
+        private Travel travel;
+        private List<IUser> Users = new();
+        private List<Travel> Travels;
 
         public TravelsWindow(UserManager userManager)
         {
             InitializeComponent();
 
             this.userManager = userManager;
+
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            // Uppdatera Ui
+
+            //txtUserName.Text = this.user.UserName;
+
+            if (this.userManager.SignedInUser is User)
+            {
+                User signedInUser = this.userManager.SignedInUser as User;
+
+                foreach (var travel in signedInUser.Travels)
+                {
+                    lvDisplay.Items.Add(travel.GetInfo());
+                    ListViewItem item = new();
+                    item.Content = travel.GetInfo();
+                    item.Tag = travel;
+                }
+            }
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)

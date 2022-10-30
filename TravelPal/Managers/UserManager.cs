@@ -10,8 +10,6 @@ namespace TravelPal.Managers
         public string Password { get; set; }
         public Countries Location { get; set; }
         public List<IUser> Users { get; set; } = new();
-
-        public List<Travel> Travels { get; set; }
         public IUser SignedInUser { get; set; }
 
         public UserManager()
