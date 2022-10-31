@@ -14,6 +14,7 @@ namespace TravelPal.Managers
 
         public UserManager()
         {
+            this.Users = Users;
         }
         public bool AddUser(string username, string password, Countries country)
         {

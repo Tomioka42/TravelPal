@@ -93,7 +93,7 @@ namespace TravelPal
             {
                 Travel selectedTravel = selectedItem.Tag as Travel;
 
-                TravelDetailWindow travelDetailWindow = new(selectedTravel);
+                TravelDetailWindow travelDetailWindow = new TravelDetailWindow(selectedTravel, userManager, travelManager);
                 travelDetailWindow.Show();
             }
             else
@@ -106,7 +106,10 @@ namespace TravelPal
 
         private void btnUser_Click(object sender, RoutedEventArgs e)
         {
+            UserDeatilsWindow userDeatilsWindow = new(userManager);
+            userDeatilsWindow.Show();
 
+            Close();
         }
 
         private void btnSignOut_Click(object sender, RoutedEventArgs e)

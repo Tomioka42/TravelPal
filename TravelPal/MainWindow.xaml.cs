@@ -10,7 +10,6 @@ namespace TravelPal
     public partial class MainWindow : Window
     {
         private UserManager userManager;
-        private TravelManager travelManager;
         public MainWindow()
         {
             InitializeComponent();
@@ -23,7 +22,6 @@ namespace TravelPal
             InitializeComponent();
 
             this.userManager = userManager;
-            this.travelManager = travelManager;
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)

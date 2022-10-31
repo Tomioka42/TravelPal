@@ -21,6 +21,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Border  
@@ -33,7 +34,7 @@
             CornerRadius="20">
             <Label
             Content="Travel Details"
-            FontSize="40"
+            FontSize="30"
             FontFamily="Arial"
             Foreground="MintCream"
             HorizontalAlignment="Center"
@@ -127,5 +128,23 @@
             Background="White"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"/>
+
+        <Button
+            x:Name="btnBack"
+            Grid.Column="2"
+            Grid.Row="7"
+            Content="Back"
+            FontSize="15"
+            Foreground="MintCream"
+            Background="MediumSlateBlue"
+            BorderBrush="Black"
+            BorderThickness="2"
+            Margin="10" Click="btnBack_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>
