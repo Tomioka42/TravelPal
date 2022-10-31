@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using TravelPal.Enums;
 using TravelPal.Models;
 
 namespace TravelPal
@@ -10,7 +9,6 @@ namespace TravelPal
     public partial class TravelDetailWindow : Window
     {
         private Travel travel;
-        private TripTypes Type;
         public TravelDetailWindow(Travel travel)
         {
             InitializeComponent();
@@ -26,6 +24,8 @@ namespace TravelPal
             lbCountry.Content = travel.Country;
             lbAmountOfTravelers.Content = travel.Travelers;
             lbTravelType.Content = travel.GetTravelType();
+
+
         }
     }
 }

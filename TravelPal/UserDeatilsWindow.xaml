@@ -51,16 +51,14 @@
             FontSize="18"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"/>
-        <Border
+        <Label
+            x:Name="lbCurrentUsername"
             Grid.Column="2"
             Grid.Row="2"
-            Margin="18"
             BorderBrush="Black"
-            BorderThickness="2">
-            <TextBlock
-                x:Name="TxtblCurrentUsername"
-            Background="White"/>
-        </Border>
+            BorderThickness="2"
+            Background="White"
+            Margin="18"/>
 
         <Label
             Grid.Column="3"
