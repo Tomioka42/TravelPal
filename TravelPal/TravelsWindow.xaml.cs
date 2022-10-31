@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using TravelPal.Managers;
 using TravelPal.Models;
@@ -12,9 +11,7 @@ namespace TravelPal
     public partial class TravelsWindow : Window
     {
         private UserManager userManager;
-        private Travel travel;
-        private List<IUser> Users = new();
-        private List<Travel> Travels;
+        private TravelManager travelManager;
 
         public TravelsWindow(UserManager userManager)
         {
@@ -22,12 +19,26 @@ namespace TravelPal
 
             this.userManager = userManager;
 
+            this.travelManager = new();
+
+            UpdateUI();
+        }
+
+        public TravelsWindow(UserManager userManager, TravelManager travelManager)
+        {
+            InitializeComponent();
+
+            this.userManager = userManager;
+            this.travelManager = travelManager;
+
             UpdateUI();
         }
 
         private void UpdateUI()
         {
             // Uppdatera Ui
+
+            lvDisplay.Items.Clear();
 
             //txtUserName.Text = this.user.UserName;
 
@@ -37,22 +48,60 @@ namespace TravelPal
 
                 foreach (var travel in signedInUser.Travels)
                 {
-                    lvDisplay.Items.Add(travel.GetInfo());
                     ListViewItem item = new();
                     item.Content = travel.GetInfo();
                     item.Tag = travel;
+
+                    lvDisplay.Items.Add(item);
                 }
             }
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
+            ListViewItem selectedItem = lvDisplay.SelectedItem as ListViewItem;
 
+            if (selectedItem != null)
+            {
+                Travel selectedTravel = selectedItem.Tag as Travel;
+
+                // Ta Bort Resan
+                travelManager.RemoveTravel(selectedTravel);
+
+                if (userManager.SignedInUser is User)
+                {
+                    User signedInUser = userManager.SignedInUser as User;
+
+                    signedInUser.Travels.Remove(selectedTravel);
+
+                    userManager.SignedInUser = signedInUser;
+                }
+
+                UpdateUI();
+            }
+            else
+            {
+                MessageBox.Show("Please select a travel first!");
+            }
         }
 
         private void btnDetails_Click(object sender, RoutedEventArgs e)
         {
+            ListViewItem selectedItem = lvDisplay.SelectedItem as ListViewItem;
 
+            if (selectedItem != null)
+            {
+                Travel selectedTravel = selectedItem.Tag as Travel;
+
+                TravelDetailWindow travelDetailWindow = new(selectedTravel);
+                travelDetailWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select a travel first!");
+            }
+
+            Close();
         }
 
         private void btnUser_Click(object sender, RoutedEventArgs e)
@@ -67,7 +116,7 @@ namespace TravelPal
 
         private void btnAddTravel_Click(object sender, RoutedEventArgs e)
         {
-            AddTravelWindow addTravelWindow = new(userManager);
+            AddTravelWindow addTravelWindow = new(userManager, travelManager);
 
             addTravelWindow.Show();
 

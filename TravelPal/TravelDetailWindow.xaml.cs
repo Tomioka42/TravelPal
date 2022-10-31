@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using TravelPal.Enums;
+using TravelPal.Models;
 
 namespace TravelPal
 {
@@ -19,9 +9,20 @@ namespace TravelPal
     /// </summary>
     public partial class TravelDetailWindow : Window
     {
-        public TravelDetailWindow()
+        private Travel travel;
+        private TripTypes Type;
+        public TravelDetailWindow(Travel travel)
         {
             InitializeComponent();
+
+            this.travel = travel;
+
+            UpdateDetails();
+        }
+
+        private void UpdateDetails()
+        {
+
         }
     }
 }

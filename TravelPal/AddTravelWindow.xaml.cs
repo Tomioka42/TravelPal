@@ -12,15 +12,16 @@ namespace TravelPal
     /// </summary>
     public partial class AddTravelWindow : Window
     {
-        private TravelManager travelManager = new();
+        private TravelManager travelManager;
         private string selectedTravelType;
         private UserManager userManager;
 
-        public AddTravelWindow(UserManager userManager)
+        public AddTravelWindow(UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();
 
             this.userManager = userManager;
+            this.travelManager = travelManager;
 
             cbCountry.ItemsSource = Enum.GetNames(typeof(Countries));
 
@@ -65,9 +66,9 @@ namespace TravelPal
                     User user = userManager.SignedInUser as User;
 
                     user.Travels.Add(newTravel);
-
                 }
-                TravelsWindow travelsWindow = new(userManager);
+
+                TravelsWindow travelsWindow = new(userManager, travelManager);
 
                 travelsWindow.Show();
 

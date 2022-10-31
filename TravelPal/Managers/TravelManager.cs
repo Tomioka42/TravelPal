@@ -6,7 +6,6 @@ namespace TravelPal.Managers
 {
     public class TravelManager
     {
-
         public List<Travel> AllTravels { get; set; } = new();
 
         public Travel AddTravel(int travelers, Countries country, string destination, TripTypes tripType)
@@ -27,9 +26,27 @@ namespace TravelPal.Managers
             return vacation;
         }
 
-        public void RemoveTravel(Travel travel)
+        public void RemoveTravel(Travel travelToRemove)
         {
+            Travel foundTravel = null;
 
+            foreach (Travel travel in AllTravels)
+            {
+                if (travel is Travel)
+                {
+                    Travel travels = travel as Travel;
+
+                    if (travels.Country == travelToRemove.Country)
+                    {
+                        foundTravel = travels;
+                    }
+                }
+            }
+
+            if (foundTravel != null)
+            {
+                AllTravels.Remove(foundTravel);
+            }
         }
     }
 }
