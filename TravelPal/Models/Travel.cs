@@ -22,5 +22,10 @@ namespace TravelPal.Models
         {
             return $"{Country}";
         }
+
+        public virtual string GetTravelType()
+        {
+            return "TravelType";
+        }
     }
 }

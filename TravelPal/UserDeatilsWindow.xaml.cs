@@ -10,6 +10,8 @@ namespace TravelPal
         public UserDeatilsWindow()
         {
             InitializeComponent();
+
+
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

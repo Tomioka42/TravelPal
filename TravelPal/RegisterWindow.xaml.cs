@@ -11,6 +11,7 @@ namespace TravelPal
     public partial class RegisterWindow : Window
     {
         private UserManager userManager;
+        private TravelManager travelManager;
         public RegisterWindow(UserManager userManager)
         {
             InitializeComponent();
@@ -39,7 +40,7 @@ namespace TravelPal
 
                 this.userManager.AddUser(username, password, selectedCountry);
 
-                MainWindow mainWindow = new(userManager);
+                MainWindow mainWindow = new(userManager, travelManager);
 
                 mainWindow.Show();
 

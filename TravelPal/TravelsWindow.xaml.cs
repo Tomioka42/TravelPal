@@ -111,7 +111,10 @@ namespace TravelPal
 
         private void btnSignOut_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mainWindow = new(userManager, travelManager);
 
+            mainWindow.Show();
+            Close();
         }
 
         private void btnAddTravel_Click(object sender, RoutedEventArgs e)

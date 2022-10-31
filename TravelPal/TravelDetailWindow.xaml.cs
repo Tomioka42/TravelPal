@@ -22,7 +22,10 @@ namespace TravelPal
 
         private void UpdateDetails()
         {
-
+            lbDestination.Content = travel.Destination;
+            lbCountry.Content = travel.Country;
+            lbAmountOfTravelers.Content = travel.Travelers;
+            lbTravelType.Content = travel.GetTravelType();
         }
     }
 }
