@@ -13,22 +13,21 @@ namespace TravelPal
     {
         private UserManager userManager;
         private TravelManager travelManager;
-        public RegisterWindow(UserManager userManager)
+        public RegisterWindow(UserManager userManager, TravelManager travelManager)
         {
             InitializeComponent();
 
             this.userManager = userManager;
+            this.travelManager = travelManager;
 
             cbCountries.ItemsSource = Enum.GetNames(typeof(Countries));
         }
         private void btnRegisterUser_Click(object sender, RoutedEventArgs e)
         {
-
             // Fixa att om alla inte är inlagda och skrivna så blir det ett error meddelande
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string country = cbCountries.SelectedItem as string;
-
 
             try
             {
@@ -56,9 +55,9 @@ namespace TravelPal
 
                 }
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException anex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(anex.Message);
             }
             catch (Exception ex)
             {

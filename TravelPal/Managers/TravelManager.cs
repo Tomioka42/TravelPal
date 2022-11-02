@@ -28,25 +28,30 @@ namespace TravelPal.Managers
 
         public void RemoveTravel(Travel travelToRemove)
         {
-            Travel foundTravel = null;
+            //Travel foundTravel = null;
 
-            foreach (Travel travel in AllTravels)
+            if (AllTravels.Contains(travelToRemove))
             {
-                if (travel is Travel)
-                {
-                    Travel travels = travel as Travel;
-
-                    if (travels.Country == travelToRemove.Country)
-                    {
-                        foundTravel = travels;
-                    }
-                }
+                AllTravels.Remove(travelToRemove);
             }
 
-            if (foundTravel != null)
-            {
-                AllTravels.Remove(foundTravel);
-            }
+            //foreach (Travel travel in AllTravels)
+            //{
+            //    if (travel is Travel)
+            //    {
+            //        Travel travels = travel as Travel;
+
+            //        if (travels.Country == travelToRemove.Country)
+            //        {
+            //            foundTravel = travels;
+            //        }
+            //    }
+            //}
+
+            //if (foundTravel != null)
+            //{
+            //    AllTravels.Remove(foundTravel);
+            //}
         }
     }
 }

@@ -113,5 +113,12 @@
             Grid.Row="7"
             Content="Add"
             Margin="50,10" Click="btnAddTravel_Click"/>
+
+        <Button
+            x:Name="btnCancel"
+            Grid.Column="1"
+            Grid.Row="7"
+            Content="Cancel"
+            Margin="50,10" Click="btnCancel_Click"/>
     </Grid>
 </Window>

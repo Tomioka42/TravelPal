@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using TravelPal.Managers;
 using TravelPal.Models;
@@ -12,17 +13,6 @@ namespace TravelPal
     {
         private UserManager userManager;
         private TravelManager travelManager;
-
-        public TravelsWindow(UserManager userManager)
-        {
-            InitializeComponent();
-
-            this.userManager = userManager;
-
-            this.travelManager = new();
-
-            UpdateUI();
-        }
 
         public TravelsWindow(UserManager userManager, TravelManager travelManager)
         {
@@ -41,22 +31,43 @@ namespace TravelPal
             lvDisplay.Items.Clear();
 
             //txtUserName.Text = this.user.UserName;
-
-            if (this.userManager.SignedInUser is User)
+            try
             {
-                User signedInUser = this.userManager.SignedInUser as User;
-
-                foreach (var travel in signedInUser.Travels)
+                if (this.userManager.SignedInUser is User)
                 {
-                    ListViewItem item = new();
-                    item.Content = travel.GetInfo();
-                    item.Tag = travel;
+                    User signedInUser = this.userManager.SignedInUser as User;
 
-                    lvDisplay.Items.Add(item);
+                    foreach (var travel in signedInUser.Travels)
+                    {
+                        ListViewItem item = new();
+                        item.Content = travel.GetInfo();
+                        item.Tag = travel;
+
+                        lvDisplay.Items.Add(item);
+                    }
+                }
+                else if (this.userManager.SignedInUser is Admin)
+                {
+                    IUser signedInAdmin = this.userManager.SignedInUser as Admin;
+
+                    foreach (var travel in travelManager.AllTravels)
+                    {
+                        ListViewItem item = new();
+                        item.Content = travel.GetInfo();
+                        item.Tag = travel;
+
+                        lvDisplay.Items.Add(item);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
+        //Om Remove knappen aktiveras så kallar den till andra metoder nödvändiga till att ta bort den önskade resan.
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             ListViewItem selectedItem = lvDisplay.SelectedItem as ListViewItem;
@@ -106,7 +117,7 @@ namespace TravelPal
 
         private void btnUser_Click(object sender, RoutedEventArgs e)
         {
-            UserDeatilsWindow userDeatilsWindow = new(userManager);
+            UserDeatilsWindow userDeatilsWindow = new(userManager, travelManager);
             userDeatilsWindow.Show();
 
             Close();

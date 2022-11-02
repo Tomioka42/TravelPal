@@ -56,6 +56,8 @@ namespace TravelPal
                     User user = userManager.SignedInUser as User;
 
                     user.Travels.Add(newTravel);
+
+                    userManager.SignedInUser = user;
                 }
                 else if (selectedTravelType == "Vacation")
                 {
@@ -66,6 +68,8 @@ namespace TravelPal
                     User user = userManager.SignedInUser as User;
 
                     user.Travels.Add(newTravel);
+
+                    userManager.SignedInUser = user;
                 }
 
                 TravelsWindow travelsWindow = new(userManager, travelManager);
@@ -86,19 +90,36 @@ namespace TravelPal
         {
             // Trip eller Vacation?
             this.selectedTravelType = cbTravelType.SelectedItem as string;
+            try
+            {
+                if (selectedTravelType == "Trip")
+                {
+                    // Visa leisure or work combobox
+                    cbTripType.Visibility = Visibility.Visible;
+                    xbAllInclusive.Visibility = Visibility.Hidden;
+                }
+                else if (selectedTravelType == "Vacation")
+                {
+                    // Visa all inclusive checkbox
+                    cbTripType.Visibility = Visibility.Hidden;
+                    xbAllInclusive.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            if (selectedTravelType == "Trip")
-            {
-                // Visa leisure or work combobox
-                cbTripType.Visibility = Visibility.Visible;
-                xbAllInclusive.Visibility = Visibility.Hidden;
-            }
-            else if (selectedTravelType == "Vacation")
-            {
-                // Visa all inclusive checkbox
-                cbTripType.Visibility = Visibility.Hidden;
-                xbAllInclusive.Visibility = Visibility.Visible;
-            }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            TravelsWindow travelsWindow = new(userManager, travelManager);
+
+            travelsWindow.Show();
+
+            Close();
+
         }
     }
 }

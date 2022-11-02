@@ -7,7 +7,6 @@ namespace TravelPal.Managers
 {
     public class UserManager : IUser
     {
-        private List<Travel> Travels;
         public string Username { get; set; }
         public string Password { get; set; }
         public Countries Location { get; set; }
@@ -20,7 +19,7 @@ namespace TravelPal.Managers
 
 
             AddGandalf();
-            //AddAdmin();
+            AddAdmin();
         }
         public bool AddUser(string username, string password, Countries country)
         {
@@ -54,7 +53,7 @@ namespace TravelPal.Managers
         {
             bool isInvalidUsername = false;
 
-            foreach (User user in Users)
+            foreach (IUser user in Users)
             {
                 if (user.Username == username)
                 {
