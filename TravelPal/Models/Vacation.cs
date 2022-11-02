@@ -20,5 +20,18 @@ namespace TravelPal.Models
         {
             return "Vacation";
         }
+
+        public override string GetTravelInfo()
+        {
+            if (AllInclusive)
+            {
+                return $"Have AllInclusive";
+            }
+            else
+            {
+                return "Doesn't have AllInculsive";
+            }
+
+        }
     }
 }

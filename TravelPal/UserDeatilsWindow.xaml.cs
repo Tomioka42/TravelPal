@@ -89,7 +89,6 @@ namespace TravelPal
 
                 lbCurrentCountry.Content = userManager.SignedInUser.Location;
             }
-
         }
     }
 }

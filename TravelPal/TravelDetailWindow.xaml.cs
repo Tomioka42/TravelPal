@@ -36,6 +36,7 @@ namespace TravelPal
             lbCountry.Content = travel.Country;
             lbAmountOfTravelers.Content = travel.Travelers;
             lbTravelType.Content = travel.GetTravelType();
+            lbTravelInfo.Content = travel.GetTravelInfo();
 
 
         }

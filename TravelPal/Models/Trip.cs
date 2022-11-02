@@ -19,5 +19,10 @@ namespace TravelPal.Models
         {
             return "Trip";
         }
+
+        public override string GetTravelInfo()
+        {
+            return $"{Type}";
+        }
     }
 }

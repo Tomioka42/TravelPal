@@ -2,10 +2,12 @@
 using TravelPal.Enums;
 using TravelPal.Models;
 
+
 namespace TravelPal.Managers
 {
     public class UserManager : IUser
     {
+        private List<Travel> Travels;
         public string Username { get; set; }
         public string Password { get; set; }
         public Countries Location { get; set; }
@@ -15,6 +17,10 @@ namespace TravelPal.Managers
         public UserManager()
         {
             this.Users = Users;
+
+
+            AddGandalf();
+            //AddAdmin();
         }
         public bool AddUser(string username, string password, Countries country)
         {
@@ -33,16 +39,17 @@ namespace TravelPal.Managers
             }
         }
 
-        public void RemoveUser(IUser user)
-        {
+        //public void RemoveUser(IUser user)
+        //{
 
-        }
+        //}
 
         public bool UpdateUsername(IUser user, string username)
         {
             return false;
         }
 
+        // Denna metod checkar om username är valid eller inte.
         private bool ValidateUsername(string username)
         {
             bool isInvalidUsername = false;
@@ -64,10 +71,28 @@ namespace TravelPal.Managers
                 return false;
             }
         }
-
-        public bool SignInUser(string username, string password)
+        private void AddAdmin()
         {
-            return false;
+            Admin admin = new("Admin", "password", Enums.Countries.Korea);
+
+            Users.Add(admin);
+        }
+
+        private void AddGandalf()
+        {
+            User user = new("Gandalf", "password", Enums.Countries.Sweden);
+            Users.Add(user);
+
+            Vacation vacation1 = new(2, Enums.Countries.United_Kingdom, "London", false);
+            user.Travels.Add(vacation1);
+
+            Trip trip1 = new(1, Enums.Countries.Korea, "Seoul", TripTypes.Work);
+            user.Travels.Add(trip1);
+        }
+
+        public List<IUser> GetAllUsers()
+        {
+            return Users;
         }
     }
 }

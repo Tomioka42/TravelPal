@@ -35,6 +35,8 @@ namespace TravelPal
 
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
+
+
             string username = txtUsername.Text;
             string password = txtPassword.Text;
 
@@ -42,6 +44,7 @@ namespace TravelPal
 
             foreach (User user in userManager.Users)
             {
+
                 if (user.Username == username && user.Password == password)
                 {
                     isFoundUser = true;
