@@ -11,16 +11,19 @@ namespace TravelPal.Models
             AllInclusive = allInclusive;
         }
 
+        //Override metoden för att hämta vilket land det är om det är en trip
         public override string GetInfo()
         {
             return $"{Country}";
         }
 
+        //Override metoden för att visa att resan är en Vacation och inte en trip
         public override string GetTravelType()
         {
             return "Vacation";
         }
 
+        //Override metoden för att visa om det är all inclusive eller inte
         public override string GetTravelInfo()
         {
             if (AllInclusive)

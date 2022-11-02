@@ -10,16 +10,20 @@ namespace TravelPal.Models
         {
             Type = selectedTripType;
         }
+
+        //Override metoden för att hämta vilket land det är om det är en trip
         public override string GetInfo()
         {
             return $"{Country}";
         }
 
+        //Override metoden för att visa att resan är en trip och inte en vacation
         public override string GetTravelType()
         {
             return "Trip";
         }
 
+        //Override metoden för att visa om det är en work trip eller en leisure trip
         public override string GetTravelInfo()
         {
             return $"{Type}";

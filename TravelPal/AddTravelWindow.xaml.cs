@@ -30,6 +30,7 @@ namespace TravelPal
             cbTripType.ItemsSource = Enum.GetNames(typeof(TripTypes));
         }
 
+        //Click eventet som lägger till resor till användaren med hjälp av andra metoder
         private void btnAddTravel_Click(object sender, RoutedEventArgs e)
         {
             string destination = txtDestination.Text;
@@ -85,7 +86,7 @@ namespace TravelPal
 
         }
 
-
+        //Denna checkar om användaren väljer att resan ska vara en trip eller vacation
         private void cbTravelType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Trip eller Vacation?
@@ -112,6 +113,7 @@ namespace TravelPal
 
         }
 
+        //Denna knapp ger användaren möjligheten att gå tillbaka utan att lägga till en resa
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             TravelsWindow travelsWindow = new(userManager, travelManager);

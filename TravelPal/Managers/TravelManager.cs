@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using TravelPal.Enums;
 using TravelPal.Models;
 
@@ -8,6 +10,7 @@ namespace TravelPal.Managers
     {
         public List<Travel> AllTravels { get; set; } = new();
 
+        //Metoden för att Lägga till resan i All Travels listan om det är en trip och inte en vacation
         public Travel AddTravel(int travelers, Countries country, string destination, TripTypes tripType)
         {
             Trip trip = new(travelers, country, destination, tripType);
@@ -17,6 +20,7 @@ namespace TravelPal.Managers
             return trip;
         }
 
+        //Metoden för att Lägga till resan i All Travels listan om det är en vacation och inte en trip
         public Travel AddTravel(int travelers, Countries country, string destination, bool allInclusive)
         {
             Vacation vacation = new(travelers, country, destination, allInclusive);
@@ -26,32 +30,21 @@ namespace TravelPal.Managers
             return vacation;
         }
 
+        //Metoden för att ta bort resan från All travels listan, om den finns i AllTravels
         public void RemoveTravel(Travel travelToRemove)
         {
-            //Travel foundTravel = null;
-
-            if (AllTravels.Contains(travelToRemove))
+            try
             {
-                AllTravels.Remove(travelToRemove);
+                if (AllTravels.Contains(travelToRemove))
+                {
+                    AllTravels.Remove(travelToRemove);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
-            //foreach (Travel travel in AllTravels)
-            //{
-            //    if (travel is Travel)
-            //    {
-            //        Travel travels = travel as Travel;
-
-            //        if (travels.Country == travelToRemove.Country)
-            //        {
-            //            foundTravel = travels;
-            //        }
-            //    }
-            //}
-
-            //if (foundTravel != null)
-            //{
-            //    AllTravels.Remove(foundTravel);
-            //}
         }
     }
 }

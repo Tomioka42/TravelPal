@@ -21,9 +21,10 @@ namespace TravelPal.Managers
             AddGandalf();
             AddAdmin();
         }
+
+        //Metoden för att Adda en user till Users listan
         public bool AddUser(string username, string password, Countries country)
         {
-            // Validate username
             if (ValidateUsername(username))
             {
                 User user = new(username, password, country);
@@ -38,17 +39,13 @@ namespace TravelPal.Managers
             }
         }
 
-        //public void RemoveUser(IUser user)
-        //{
-
-        //}
-
+        //Metoden för att kunna uppdatera sitt username i applikationen
         public bool UpdateUsername(IUser user, string username)
         {
             return false;
         }
 
-        // Denna metod checkar om username är valid eller inte.
+        //Metoden för att kunna titta om usernamet är valid eller om det redan används av en annan user
         private bool ValidateUsername(string username)
         {
             bool isInvalidUsername = false;
@@ -70,6 +67,8 @@ namespace TravelPal.Managers
                 return false;
             }
         }
+
+        //Metoden som skapar Admin användaren
         private void AddAdmin()
         {
             Admin admin = new("Admin", "password", Enums.Countries.Korea);
@@ -77,6 +76,7 @@ namespace TravelPal.Managers
             Users.Add(admin);
         }
 
+        //Metoden som skapar Gandalf avändaren och skapar två resor till användaren
         private void AddGandalf()
         {
             User user = new("Gandalf", "password", Enums.Countries.Sweden);
@@ -87,11 +87,6 @@ namespace TravelPal.Managers
 
             Trip trip1 = new(1, Enums.Countries.Korea, "Seoul", TripTypes.Work);
             user.Travels.Add(trip1);
-        }
-
-        public List<IUser> GetAllUsers()
-        {
-            return Users;
         }
     }
 }

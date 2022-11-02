@@ -28,6 +28,7 @@ namespace TravelPal
             lbCurrentCountry.Content = userManager.SignedInUser.Location;
         }
 
+        //Öppnar Travels window och stänger user details window
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             TravelsWindow travelsWindow = new(userManager, travelManager);
@@ -36,6 +37,7 @@ namespace TravelPal
             Close();
         }
 
+        //Öppnar Travels window och stänger user details window
         private void btnDone_Click(object sender, RoutedEventArgs e)
         {
             TravelsWindow travelsWindow = new(userManager, travelManager);
@@ -44,6 +46,7 @@ namespace TravelPal
             Close();
         }
 
+        //CLick event som ändrar username på användaren
         private void btnChangeUsername_Click(object sender, RoutedEventArgs e)
         {
             if (txtNewUsername.Text != null && txtNewUsername.Text.Length >= 3)
@@ -63,6 +66,7 @@ namespace TravelPal
             }
         }
 
+        //CLick event som ändrar password på användaren
         private void btnChangePassword_Click(object sender, RoutedEventArgs e)
         {
             if (txtNewPassword != null && txtNewPassword.Text == txtConfirmPassword.Text && txtNewPassword.Text.Length >= 5)
@@ -79,6 +83,7 @@ namespace TravelPal
             }
         }
 
+        //CLick event som ändrar location på användaren
         private void btnChangeCountry_Click(object sender, RoutedEventArgs e)
         {
             try

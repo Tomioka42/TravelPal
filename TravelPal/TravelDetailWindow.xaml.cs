@@ -22,14 +22,8 @@ namespace TravelPal
 
             UpdateDetails();
         }
-        //public TravelDetailWindow(UserManager userManager, TravelManager travelManager)
-        //{
-        //    InitializeComponent();
 
-        //    this.userManager = userManager;
-        //    this.travelManager = travelManager;
-        //}
-
+        //Uppdaterar all information om resan till travel details window
         private void UpdateDetails()
         {
             lbDestination.Content = travel.Destination;
@@ -41,6 +35,7 @@ namespace TravelPal
 
         }
 
+        //Click event som öppnar travels window och stänger travel details window om användaren trycker på back knappen
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             TravelsWindow travelsWindow = new(userManager, travelManager);

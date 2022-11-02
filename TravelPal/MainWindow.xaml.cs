@@ -37,6 +37,8 @@ namespace TravelPal
             this.travelManager = travelManager;
         }
 
+
+        //Click event som öppnar register window
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             RegisterWindow registerWindow = new(userManager, travelManager);
@@ -46,6 +48,7 @@ namespace TravelPal
             Close();
         }
 
+        //Click eventet som gör att användaren kan logga in och öppnar travels window
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text;

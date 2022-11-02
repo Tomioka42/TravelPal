@@ -24,7 +24,6 @@ namespace TravelPal
         }
         private void btnRegisterUser_Click(object sender, RoutedEventArgs e)
         {
-            // Fixa att om alla inte är inlagda och skrivna så blir det ett error meddelande
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string country = cbCountries.SelectedItem as string;
