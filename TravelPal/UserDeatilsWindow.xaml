@@ -62,6 +62,23 @@
             Margin="15"/>
 
         <Label
+            Grid.Column="1"
+            Grid.Row="3"
+            Content="Current Password:"
+            FontSize="18"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+        <Label
+            x:Name="lbCurrentPassword"
+            Grid.Column="2"
+            Grid.Row="3"
+            FontSize="15"
+            BorderBrush="Black"
+            BorderThickness="2"
+            Background="White"
+            Margin="15"/>
+
+        <Label
             Grid.Column="3"
             Grid.Row="2"
             Content="New Username:"
@@ -78,7 +95,7 @@
             BorderThickness="2"/>
 
         <Label
-            Grid.Column="1"
+            Grid.Column="3"
             Grid.Row="3"
             Content="New password:"
             FontSize="18"
@@ -86,7 +103,7 @@
             VerticalAlignment="Center"/>
         <TextBox
             x:Name="txtNewPassword"
-            Grid.Column="2"
+            Grid.Column="4"
             Grid.Row="3"
             Margin="15"
             FontSize="15"
@@ -95,7 +112,7 @@
 
         <Label
             Grid.Column="3"
-            Grid.Row="3"
+            Grid.Row="4"
             Content="Confirm Password:"
             FontSize="18"
             HorizontalAlignment="Center"
@@ -103,7 +120,7 @@
         <TextBox
             x:Name="txtConfirmPassword"
             Grid.Column="4"
-            Grid.Row="3"
+            Grid.Row="4"
             Margin="15"
             FontSize="15"
             BorderBrush="Black"
@@ -169,7 +186,7 @@
             x:Name="btnDone"
             Grid.Column="4"
             Grid.Row="6"
-            Content="Save"
+            Content="Done"
             FontSize="15"
             Foreground="MintCream"
             Background="MediumSlateBlue"
@@ -185,8 +202,8 @@
 
         <Button
             x:Name="btnChangeUsername"
-            Grid.Column="4"
-            Grid.Row="4"
+            Grid.Column="3"
+            Grid.Row="5"
             Content="Change username"
             FontSize="15"
             Foreground="MintCream"
@@ -220,7 +237,7 @@
         </Button>
 
         <Button
-            x:Name="btnChange"
+            x:Name="btnChangeCountry"
             Grid.Column="3"
             Grid.Row="6"
             Content="Change Country"
@@ -229,7 +246,7 @@
             Background="MediumSlateBlue"
             BorderBrush="Black"
             BorderThickness="2"
-            Margin="10" Click="btnChange_Click">
+            Margin="10" Click="btnChangeCountry_Click" >
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>

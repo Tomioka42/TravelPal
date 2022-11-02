@@ -134,5 +134,11 @@ namespace TravelPal
             MessageBox.Show("Travel Pal är ett rese företag som har ambitionerna att hjälpa sina kunder att underlätta sitt resebokande!" +
                 "Du kan se dina resor i fönstret till vänster.. Du kan använda dom olika knapparna för att aktivera den önskade funktionen!");
         }
+
+        private void lvDisplay_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnRemove.IsEnabled = true;
+            btnDetails.IsEnabled = true;
+        }
     }
 }
