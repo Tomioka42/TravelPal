@@ -39,6 +39,11 @@ namespace TravelPal.Managers
             }
         }
 
+        public List<IUser> GetAllUsers()
+        {
+            return Users;
+        }
+
         //Metoden för att kunna uppdatera sitt username i applikationen
         public bool UpdateUsername(IUser user, string username)
         {

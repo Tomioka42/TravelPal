@@ -8,6 +8,8 @@ namespace TravelPal.Managers
 {
     public class TravelManager
     {
+        private Travel travel;
+
         public List<Travel> AllTravels { get; set; } = new();
 
         //Metoden för att Lägga till resan i All Travels listan om det är en trip och inte en vacation

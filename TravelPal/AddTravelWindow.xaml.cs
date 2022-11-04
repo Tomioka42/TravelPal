@@ -46,38 +46,46 @@ namespace TravelPal
 
                 Countries selectedCountry = (Countries)Enum.Parse(typeof(Countries), country);
 
-                if (selectedTravelType == "Trip")
+                if (txtAmountOfTravelers.Text.Length < 0 && cbCountry.SelectedItem == null && txtDestination.Text.Length < 0 && cbTravelType.SelectedItem == null)
                 {
-                    string tripType = cbTripType.SelectedItem as string;
+                    MessageBox.Show("Error! You must enter all the information that is asked");
 
-                    TripTypes selectedTripType = (TripTypes)Enum.Parse(typeof(TripTypes), tripType);
-
-                    Travel newTravel = travelManager.AddTravel(travelersInt, selectedCountry, destination, selectedTripType);
-
-                    User user = userManager.SignedInUser as User;
-
-                    user.Travels.Add(newTravel);
-
-                    userManager.SignedInUser = user;
                 }
-                else if (selectedTravelType == "Vacation")
+                else
                 {
-                    bool allInclusive = (bool)xbAllInclusive.IsChecked;
+                    if (selectedTravelType == "Trip")
+                    {
+                        string tripType = cbTripType.SelectedItem as string;
 
-                    Travel newTravel = travelManager.AddTravel(travelersInt, selectedCountry, destination, allInclusive);
+                        TripTypes selectedTripType = (TripTypes)Enum.Parse(typeof(TripTypes), tripType);
 
-                    User user = userManager.SignedInUser as User;
+                        Travel newTravel = travelManager.AddTravel(travelersInt, selectedCountry, destination, selectedTripType);
 
-                    user.Travels.Add(newTravel);
+                        User user = userManager.SignedInUser as User;
 
-                    userManager.SignedInUser = user;
+                        user.Travels.Add(newTravel);
+
+                        userManager.SignedInUser = user;
+                    }
+                    else if (selectedTravelType == "Vacation")
+                    {
+                        bool allInclusive = (bool)xbAllInclusive.IsChecked;
+
+                        Travel newTravel = travelManager.AddTravel(travelersInt, selectedCountry, destination, allInclusive);
+
+                        User user = userManager.SignedInUser as User;
+
+                        user.Travels.Add(newTravel);
+
+                        userManager.SignedInUser = user;
+                    }
+                    TravelsWindow travelsWindow = new(userManager, travelManager);
+
+                    travelsWindow.Show();
+
+                    Close();
                 }
 
-                TravelsWindow travelsWindow = new(userManager, travelManager);
-
-                travelsWindow.Show();
-
-                Close();
             }
             catch (Exception ex)
             {

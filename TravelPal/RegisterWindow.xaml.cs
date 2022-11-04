@@ -54,10 +54,6 @@ namespace TravelPal
 
                 }
             }
-            catch (ArgumentNullException anex)
-            {
-                MessageBox.Show(anex.Message);
-            }
             catch (Exception ex)
             {
                 MessageBox.Show("Error! You need to enter all the information that is asked for!");

@@ -13,6 +13,8 @@ namespace TravelPal
     {
         private UserManager userManager;
         private TravelManager travelManager;
+        private Travel oldTravel;
+        private Travel newTravel;
 
         public TravelsWindow(UserManager userManager, TravelManager travelManager)
         {
@@ -49,6 +51,8 @@ namespace TravelPal
                 }
                 else if (this.userManager.SignedInUser is Admin)
                 {
+
+                    btnAddTravel.Visibility = Visibility.Hidden;
                     IUser signedInAdmin = this.userManager.SignedInUser as Admin;
 
                     foreach (var travel in travelManager.AllTravels)
@@ -77,16 +81,20 @@ namespace TravelPal
             {
                 Travel selectedTravel = selectedItem.Tag as Travel;
 
-                // Ta Bort Resan
+                // Ta Bort Resan från allTravels
                 travelManager.RemoveTravel(selectedTravel);
 
-                if (userManager.SignedInUser is User)
+                foreach (IUser user in userManager.GetAllUsers())
                 {
-                    User signedInUser = userManager.SignedInUser as User;
+                    if (user is User)
+                    {
+                        User appUser = user as User;
 
-                    signedInUser.Travels.Remove(selectedTravel);
-
-                    userManager.SignedInUser = signedInUser;
+                        if (appUser.Travels.Contains(selectedTravel))
+                        {
+                            appUser.Travels.Remove(selectedTravel);
+                        }
+                    }
                 }
 
                 UpdateUI();
@@ -108,13 +116,19 @@ namespace TravelPal
 
                 TravelDetailWindow travelDetailWindow = new TravelDetailWindow(selectedTravel, userManager, travelManager);
                 travelDetailWindow.Show();
+                Close();
             }
             else
             {
                 MessageBox.Show("Please select a travel first!");
+
+                TravelsWindow travelsWindow = new(userManager, travelManager);
+                travelsWindow.Show();
+                Close();
+
             }
 
-            Close();
+
         }
 
         //Click event som öppnar user details window och stänger travels window
